@@ -3,6 +3,7 @@ package com.mufeng.rxjavademo
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.mufeng.rxjavademo.rx.CreateDemo
 import com.mufeng.rxjavademo.rx.ObservableDemo
 
 class MainActivity : AppCompatActivity() {
@@ -13,7 +14,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun create(v: View){
-        ObservableDemo.testDo()
+        //Observable 生命周期
+//        ObservableDemo.testDo()
+        CreateDemo.testRepeatUntil();
     }
 
 }
