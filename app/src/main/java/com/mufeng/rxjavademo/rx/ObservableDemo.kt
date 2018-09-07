@@ -4,16 +4,6 @@ import android.util.Log
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.subscribeBy
 
-/**
- * Copyright (c) 山东六牛网络科技有限公司 https://liuniukeji.com
- *
- * @Description
- * @Author (沐枫/hanlin_bj@163.com)
- * @Copyright Copyright (c) 山东六牛网络科技有限公司 保留所有版权(https://www.liuniukeji.com)
- * @Date 2018/9/6
- * @CreateBy android_studio
- * @Remarks
- */
 class ObservableDemo {
 
     companion object {
@@ -29,7 +19,7 @@ class ObservableDemo {
                     .doOnComplete { Log.e("TAG", "doOnComplete: ") }
                     .doOnDispose { Log.e("TAG", "doOnDispose: ") }
                     .doOnEach { Log.e("TAG", "doOnEach: ${if (it.isOnNext) "onNext" else if (it.isOnComplete) "onComplete" else "onError"}") }
-                    .doOnError { Log.e("TAG", "doOnError: ${it.localizedMessage}") }
+                    .doOnError { Log.e("TAG", "doOnError: ${it.message}") }
                     .doOnLifecycle({Log.e("TAG", "doOnLifecycle: ${it.isDisposed}")},{Log.e("TAG", "doOnLifecycle run: ")})
                     .doOnSubscribe { Log.e("TAG", "doOnSubscribe: ${it.isDisposed}") }
                     .doOnTerminate { Log.e("TAG", "doOnTerminate: ") }

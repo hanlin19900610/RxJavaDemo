@@ -8,16 +8,6 @@ import java.util.concurrent.Callable
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
-/**
- * Copyright (c) 山东六牛网络科技有限公司 https://liuniukeji.com
- *
- * @Description
- * @Author (沐枫/hanlin_bj@163.com)
- * @Copyright Copyright (c) 山东六牛网络科技有限公司 保留所有版权(https://www.liuniukeji.com)
- * @Date 2018/9/6
- * @CreateBy android_studio
- * @Remarks
- */
 class CreateDemo {
 
     companion object {
