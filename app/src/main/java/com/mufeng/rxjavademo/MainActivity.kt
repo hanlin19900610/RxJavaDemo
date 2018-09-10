@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         btn_create.setOnClickListener {
-            ChangeDemo.testGroupBy()
+            ChangeDemo.testWindow()
         }
     }
 

@@ -11,18 +11,18 @@ import org.intellij.lang.annotations.Language
  */
 class ChangeDemo {
     companion object {
-//        fun testMap() {
-//            Observable.just("HELLO")
-//                    .map {
-//                        //把大写转换成小写
-//                        it.toLowerCase()
-//                    }
-//                    .map {
-//                        //添加新的字符串
-//                        "$it MuFeng!"
-//                    }
-//                    .subscribeBy { Log.e("TAG", it) }
-//        }
+        fun testMap() {
+            Observable.just("HELLO")
+                    .map {
+                        //把大写转换成小写
+                        it.toLowerCase()
+                    }
+                    .map {
+                        //添加新的字符串
+                        "$it MuFeng!"
+                    }
+                    .subscribeBy { Log.e("TAG", it) }
+        }
 
         fun testFlatMap() {
 
@@ -60,7 +60,7 @@ class ChangeDemo {
         }
 
         fun testGroupBy(){
-            Observable.range(0,100)
+            Observable.range(0,51)
                     .groupBy {
                         if (it % 2 == 0)
                             "偶数组"
@@ -68,11 +68,55 @@ class ChangeDemo {
                             "奇数组"
                     }
                     .subscribe {
+                        //打印分组名称
                         Log.e("TAG","GroupName: ${it.key}")
+                        //打印出所有偶数
                         if (it.key == "偶数组") {
                             it.subscribeBy { Log.e("TAG","偶数: $it") }
                         }
                     }
+        }
+
+        fun testBuffer(){
+            Observable.range(1,10)
+                    .buffer(5,1)
+                    .subscribeBy(
+                            onNext = {Log.e("TAG",it.toString())},
+                            onComplete = {Log.e("TAG","onComplete")}
+                    )
+        }
+
+        fun testBufferWithError(){
+            Observable.create<Int> {
+                it.onNext(1)
+                it.onNext(2)
+                it.onNext(3)
+                it.onNext(4)
+                it.onNext(5)
+                it.onNext(6)
+                it.onError(Throwable("error"))
+                it.onNext(7)
+                it.onNext(8)
+                it.onNext(9)
+                it.onNext(10)
+            }.buffer(2)
+                    .subscribeBy(
+                            onNext = {Log.e("TAG",it.toString())},
+                            onComplete = {Log.e("TAG","onComplete")},
+                            onError = {Log.e("TAG","onError: ${it.message}")}
+                    )
+        }
+
+        fun testWindow(){
+            Observable.range(1,10)
+                    .window(2)
+                    .subscribeBy(
+                            onNext = {
+                                Log.e("TAG","onNext: ")
+                                it.subscribeBy { Log.e("TAG","onNext: $it") }
+                            },
+                            onComplete = {Log.e("TAG","onComplete")}
+                    )
         }
 
     }
